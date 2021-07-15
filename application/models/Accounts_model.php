@@ -23,8 +23,15 @@ class Accounts_model extends CI_Model{
         $accounts = $this->db->select('*')->from('accounts')->order_by('id','desc')->get()->result_array();
 		if(!empty($accounts)) {
 			foreach ($accounts as $key => $account) {
+
+
+                 
+                if (!empty($account['account_group_id'])) {
+                    $retVal = $this->db->select('*')->from('account_groups')->where("id",$account['account_group_id'])->get()->result_array()[0];} else { $retVal = '';}
+                    
+
 				$Accounts[$key] = $account;
-                $Accounts[$key]['account_group']  = $this->db->select('*')->from('account_groups')->where("id",$account['account_group_id'])->get()->result_array()[0];
+                $Accounts[$key]['account_group']  = $retVal;
                 $Accounts[$key]['child_account_type']  = $this->db->select('*')->from('child_account_types')->where("id",$account['child_account_type_id'])->get()->result_array()[0];
                 $Accounts[$key]['account_added_by']  = $this->db->select('*')->from('login')->where("u_id",$account['added_by'])->get()->result_array()[0];
                if(!empty($account['main_account_id'])){

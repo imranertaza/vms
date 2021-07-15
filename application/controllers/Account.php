@@ -218,7 +218,7 @@ class Account extends CI_Controller {
 		}
 		
 		$this->form_validation->set_rules('child_account_type_id', 'Account Type', 'required');
-		$this->form_validation->set_rules('account_group_id', 'Account Group', 'required');
+		//$this->form_validation->set_rules('account_group_id', 'Account Group', 'required');
 		$this->form_validation->set_rules('account_number', 'Account Number', 'required');
 		$this->form_validation->set_rules('account_name', 'Account Name', 'required');
 		
